@@ -3,6 +3,12 @@
 .vscode/
 .idea/
 
+#parcelcache
+.parcel-cache
+
+#package-lock
+.package-lock.json
+
 # Logs
 logs
 *.log
@@ -107,6 +113,3 @@ dist
 
 # TernJS port file
 .tern-port
-
-# Parcel
-.parcel-cache/
