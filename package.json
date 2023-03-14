@@ -22,5 +22,8 @@
     "parcel": "^2.8.3",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
+  },
+  "dependencies": {
+    "simplelightbox": "^2.12.1"
   }
 }
