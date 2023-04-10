@@ -1,41 +1,30 @@
 import throttle from 'lodash.throttle';
 
-const emailEl = document.querySelector('input[type=email]');
-const messageEl = document.querySelector('textarea[name=message]');
-const submitEl = document.querySelector('button[type=submit]');
-let localData = JSON.parse(localStorage.getItem('feedback-form-state'));
-
-const data = {
-  email: '',
-  message: '',
-};
+const formEl = document.querySelector('.feedback-form');
 
 const updateData = () => {
+  const localData = JSON.parse(localStorage.getItem('feedback-form-state'));
   if (localData) {
-    data.email = localData.email;
-    data.message = localData.message;
-  } else {
-    data.email = '';
-    data.message = '';
-  }
-  emailEl.value = data.email;
-  messageEl.value = data.message;
+    formEl.email.value = localData.email;
+    formEl.message.value = localData.message;
+  } else formEl.reset();
 };
 
 const saveData = throttle(event => {
+  const data = {
+    email: '',
+    message: '',
+  };
   data[event.target.name] = event.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }, 500);
 
 const clearData = event => {
   event.preventDefault();
-  console.log(data);
-  localData = null;
   localStorage.clear();
   updateData();
 };
 
 updateData();
-emailEl.addEventListener('input', saveData);
-messageEl.addEventListener('input', saveData);
-submitEl.addEventListener('click', clearData);
+formEl.addEventListener('input', saveData);
+formEl.addEventListener('submit', clearData);
